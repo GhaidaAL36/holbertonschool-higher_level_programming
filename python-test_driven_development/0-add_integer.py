@@ -1,16 +1,15 @@
 #!/usr/bin/python3
 """
-This module provides a function to add two integers together.
-The function ensures that both inputs are integers or floats before performing the addition.
-If a float is provided, it will be cast to an integer.
-If an invalid type is provided, the function raises a TypeError with a clear message.
-This module does not import any external modules and demonstrates simple type checking in Python.
+This module contains a function that adds two integers.
+It checks types and casts floats to integers before adding.
+The function returns the sum as an integer.
 """
+
 def add_integer(a, b=98):
     """
-    Adds two integers or floats after type validation.
-    Floats are cast to integers before addition.
-    Raises TypeError if inputs are invalid.
+    Adds two integers a and b after validation.
+
+    Floats are casted to integers. Raises TypeError if invalid.
     """
     if not isinstance(a, (int, float)):
         raise TypeError("a must be an integer")
