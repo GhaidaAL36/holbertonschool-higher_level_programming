@@ -34,7 +34,9 @@ class Square:
         prints square with the character #
         """
         if self.__size == 0:
+            """checks if the size square is 0"""
             print()
-            return
-        for row in range(self.__size):
-            print("#" * self.__size)
+            """prints an empty line"""
+        else:
+            for row in range(self.__size):
+                print("#" * self.__size)
