@@ -3,23 +3,16 @@
 
 
 class Square:
-    """This class defines a square with a specific size"""
+    """Represent a square with private optional attribute."""
+
     def __init__(self, size=0):
         """
-        Initialize a new square instance.
-        size: the size of the square
+        Initialize a Square instance.
+
+        :param size: The size of the square (must be an integer >= 0)
         """
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
-        """TypeError: if size is not an integer
-        """
-
         if size < 0:
             raise ValueError("size must be >= 0")
-        """"
-        ValueError: if size is less than 0
-        """
-
         self.__size = size
-        """the size of the square, must not be negative
-        """
