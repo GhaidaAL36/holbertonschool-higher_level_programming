@@ -17,7 +17,7 @@ class Square:
 
     @size.setter
     def size(self, value):
-        """set the size of the square, must be positive"""
+        """type of size of the square, must be int"""
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
         """TypeError: if size is not an integer"""
@@ -30,8 +30,7 @@ class Square:
     def area(self):
         """Calculate the area of the square"""
         return self.__size ** 2
-        """returns the area of the square"""
-
+    
     def my_print(self):
         """prints the square using this character '#'"""
         if self.__size == 0:
