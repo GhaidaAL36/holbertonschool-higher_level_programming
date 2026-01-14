@@ -1,48 +1,25 @@
 #!/usr/bin/python3
-"""
-This module connects to a MySQL database and lists all states
-with a name starting with the letter 'N'.
-"""
+"""This module connects to a MySQL database 
+and lists all states starting with 'N'."""
 
 import MySQLdb
 import sys
 
-
-def filter_states(username, password, database):
-    """
-    Connects to the MySQL server and prints all states
-    from the specified database whose names start with 'N'.
-
-    Args:
-        username (str): MySQL username.
-        password (str): MySQL password.
-        database (str): MySQL database name.
-    """
-    # Connect to the MySQL server on localhost at port 3306
+if __name__ == "__main__":
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=username,
-        passwd=password,
-        db=database
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3]
     )
 
-    # Create a cursor object to interact with the database
-    cursor = db.cursor()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
 
-    # Execute the query to get states starting with 'N'
-    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC;")
+    rows = cur.fetchall()
+    for row in rows:
+        print(row)
 
-    # Fetch all results and print them
-    states = cursor.fetchall()
-    for state in states:
-        print(state)
-
-    # Close the cursor and connection
-    cursor.close()
+    cur.close()
     db.close()
-
-
-# Ensure code only runs when executed directly
-if __name__ == "__main__":
-    filter_states(sys.argv[1], sys.argv[2], sys.argv[3])
