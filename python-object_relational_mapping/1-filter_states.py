@@ -1,33 +1,24 @@
 #!/usr/bin/python3
-"""
-lists all states
-with a name starting with N
-"""
+"""Lists all states starting with N"""
 
 import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=username,
-        passwd=password,
-        db=database
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3]
     )
 
-    cursor = db.cursor()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
 
-    cursor.execute(
-        "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC;"
-    )
-
-    for row in cursor.fetchall():
+    rows = cur.fetchall()
+    for row in rows:
         print(row)
 
-    cursor.close()
+    cur.close()
     db.close()
