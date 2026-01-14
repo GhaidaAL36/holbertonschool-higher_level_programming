@@ -1,31 +1,39 @@
 #!/usr/bin/python3
-"""Takes an argument and displays all values in states table where name matches
+"""
+This module connects to a MySQL database and displays all states
+from the 'states' table where the name matches the provided argument.
 """
 
 import MySQLdb
 import sys
 
+
 if __name__ == "__main__":
+    # Get arguments: username, password, database, state name
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
+    state_name = sys.argv[4]
+
+    # Connect to the MySQL server
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=sys.argv[1],
-        passwd=sys.argv[2],
-        db=sys.argv[3]
+        user=username,
+        passwd=password,
+        db=database
     )
-    cur = db.cursor()
 
-    # Using format() — required by the task
-    query = (
-        "SELECT * FROM states "
-        "WHERE name = '{}' "
-        "ORDER BY id ASC"
-    ).format(sys.argv[4])
-    cur.execute(query)
+    cursor = db.cursor()
 
-    rows = cur.fetchall()
-    for row in rows:
+    # Use format to safely insert the user input into SQL query
+    query = "SELECT * FROM states WHERE name='{}' ORDER BY id ASC".format(state_name)
+    cursor.execute(query)
+
+    # Fetch all matching states and print them
+    for row in cursor.fetchall():
         print(row)
 
-    cur.close()
+    # Close cursor and connection
+    cursor.close()
     db.close()
