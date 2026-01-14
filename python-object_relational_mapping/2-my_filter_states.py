@@ -15,8 +15,12 @@ if __name__ == "__main__":
     )
     cur = db.cursor()
 
-    # Using format() — required by the task (YES this is unsafe)
-    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(sys.argv[4])
+    # Using format() — required by the task
+    query = (
+        "SELECT * FROM states "
+        "WHERE name = '{}' "
+        "ORDER BY id ASC"
+    ).format(sys.argv[4])
     cur.execute(query)
 
     rows = cur.fetchall()

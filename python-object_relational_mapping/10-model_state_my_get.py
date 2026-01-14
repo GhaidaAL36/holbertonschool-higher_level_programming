@@ -20,8 +20,12 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Fetch first matching state (SQL injection safe because parameters are bound)
-    state = session.query(State).filter(State.name == sys.argv[4]).first()
+    # Fetch first matching state
+    state = (
+        session.query(State)
+        .filter(State.name == sys.argv[4])
+        .first()
+    )
 
     if state:
         print(state.id)
