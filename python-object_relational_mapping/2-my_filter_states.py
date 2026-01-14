@@ -8,14 +8,17 @@ import MySQLdb
 import sys
 
 
-if __name__ == "__main__":
-    # Get arguments: username, password, database, state name
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    state_name = sys.argv[4]
+def filter_states(username, password, database, state_name):
+    """
+    Connects to the MySQL database and prints all states whose
+    name matches the argument.
 
-    # Connect to the MySQL server
+    Args:
+        username (str): MySQL username.
+        password (str): MySQL password.
+        database (str): MySQL database name.
+        state_name (str): State name to search for.
+    """
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
@@ -23,17 +26,16 @@ if __name__ == "__main__":
         passwd=password,
         db=database
     )
-
     cursor = db.cursor()
-
-    # Use format to safely insert the user input into SQL query
-    query = "SELECT * FROM states WHERE name='{}' ORDER BY id ASC".format(state_name)
+    query = "SELECT * FROM states WHERE name='{}' ORDER BY id ASC".format(
+        state_name
+    )
     cursor.execute(query)
-
-    # Fetch all matching states and print them
     for row in cursor.fetchall():
         print(row)
-
-    # Close cursor and connection
     cursor.close()
     db.close()
+
+
+if __name__ == "__main__":
+    filter_states(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
