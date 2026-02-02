@@ -1,7 +1,8 @@
 const headerId = document.getElementById('red_header');
 const header = document.querySelector('header');
-headerId.onclick = changeColor;
 
-function changeColor () {
-  header.style.color = '#FF0000';
+headerId.onclick = applyClass;
+
+function applyClass () {
+  header.classList.add('red');
 }
