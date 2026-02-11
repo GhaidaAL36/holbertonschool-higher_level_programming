@@ -52,7 +52,72 @@ print(a == b)  # True (same value)
 print(a is b)  # False (different objects)
 ```
 
+# Mutable Objects
+
+Mutable objects can be modified in place after creation.
+* Example:
+
+```python
+l1 = [1, 2, 3]
+l2 = l1
+
+l1.append(4)
+print(l2)
+```
+
+* Output:
+
+```python
+[1, 2, 3, 4]
+```
+Because l1 and l2 point to the same object
+
+```python
+l1 = [1, 2, 3]
+l2 = l1
+l1 = l1 + [4]
+
+print(l1)  # [1, 2, 3, 4]
+print(l2)  # [1, 2, 3]
+```
+Here, l1 + [4] creates a new list object, so l2 remains unchanged.
+
+# Immutable Objects
+Immutable objects cannot be changed after creation.
+
+* Example (integers):
+
+```python
+a = 9
+print(id(a))
+
+a += 1
+print(a)
+print(id(a))
+```
+
+* Output:
+```python
+10
+```
+A new object was created when a changed.
+
+* Example (strings):
+
+```python
+s = "Hello"
+print(id(s))
+
+s += " World"
+print(s)
+print(id(s))
+```
+
+A new string object is created, because strings are immutable.
+
 # Mutable vs Immutable Objects
+
+![alt text](1668804912016.png)
 
 | Feature                                            | Mutable Objects                    | Immutable Objects                                   |
 | -------------------------------------------------- | ---------------------------------- | --------------------------------------------------- |
