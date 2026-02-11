@@ -117,7 +117,7 @@ A new string object is created, because strings are immutable.
 
 # Mutable vs Immutable Objects
 
-![alt text](1668804912016.png)
+<img width="633" height="357" alt="1668804912016" src="https://github.com/user-attachments/assets/8f53de54-e83c-4e90-8bbd-08605f8f00a1" />
 
 | Feature                                            | Mutable Objects                    | Immutable Objects                                   |
 | -------------------------------------------------- | ---------------------------------- | --------------------------------------------------- |
